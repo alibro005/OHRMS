@@ -13,7 +13,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('property_list')
+            return redirect('login')
 
     else:
         form = CustomUserCreationForm()
@@ -26,12 +26,12 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if user.role == 'admin':
-                return redirect('/admin/')
-            elif user.role == 'owner':
-                return redirect('/properties/')
-            else:
-                return redirect('/')
+            # if user.role == 'admin':
+            #     return redirect('/admin/')
+            # elif user.role == 'owner':
+            #     return redirect('/properties/')
+            # else:
+            return redirect('/')
             
     return render(request, 'users/registration/login.html', {'form': form})
 
