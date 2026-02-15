@@ -1,0 +1,85 @@
+{% extends "layout.html" %} 
+{% load widget_tweaks %} 
+{% block title %}<title>
+  Add Property</title>
+  {% endblock %} 
+{% block content %}
+<div
+  class="max-w-4xl mx-auto bg-neutral-secondary-soft rounded-2xl shadow-lg p-8 mt-8"
+>
+  <h2 class="text-2xl font-semibold text-heading mb-6">Add a New Property</h2>
+
+  <form method="POST" enctype="multipart/form-data" class="space-y-6">
+    {% csrf_token %}
+
+    <!-- Property Form Fields -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        {{ form.title.label_tag }} {{ form.title|add_class:"w-full p-3 border border-default rounded-md bg-neutral-primary text-white focus:outline-none focus:ring-2 focus:ring-fg-brand" }} 
+
+        {% if form.title.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.title.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.location.label_tag }} {{ form.location|add_class:"w-full p-3 border border-default rounded-md bg-neutral-primary text-white focus:outline-none focus:ring-2 focus:ring-fg-brand" }} 
+
+        {% if form.location.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.location.errors.0 }}</p>
+
+        {% endif %}
+      </div>
+
+      <div class="md:col-span-2">
+        {{ form.description.label_tag }} {{ form.description|add_class:"w-full p-3 border border-default rounded-md bg-neutral-primary text-white focus:outline-none focus:ring-2 focus:ring-fg-brand h-32 resize-none" }}
+        {% if form.description.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.description.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.price.label_tag }} 
+        {{ form.price|add_class:"w-full p-3 border border-default rounded-md bg-neutral-primary text-white focus:outline-none focus:ring-2 focus:ring-fg-brand" }} 
+
+        {% if form.price.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.price.errors.0 }}</p>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.status.label_tag }} {{ form.status|add_class:"w-full p-3 border border-default rounded-md bg-neutral-primary text-white focus:outline-none focus:ring-2 focus:ring-fg-brand" }} 
+        {% if form.status.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.status.errors.0 }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Property Image Upload -->
+    
+    
+    
+
+    <div>
+      <label for="{{ form.image.id_for_label }}"
+        class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1"
+      >
+        Image:
+      </label>
+      {{ form.image|add_class:"file-input file-input-bordered w-full" }}
+    </div>
+
+    <!-- Submit Button -->
+    <div
+      class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition"
+    >
+      <button
+        type="submit"
+        class="px-6 py-3 bg-fg-brand text-black font-semibold rounded-lg hover:bg-fg-brand/80 transition"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
